@@ -14,13 +14,7 @@ An accepted command moves the door from **Closed** to **Opening** to **Open**. F
 
 ## Functional tests
 
-Start each case in a fresh play session. TC-001 has been checked in headless gameplay on Linux using simulated key input. The Blueprint logged the warning in range and stayed silent at spawn. With forward input held against the closed door, the player stopped at X = 176.55 cm in front of the door centered at X = 220 cm. On-screen presentation still awaits visual review.
-
-TC-002 was also checked in a headless Linux session with simulated key input. After powering the room, the player entered and left the door terminal's range. Pressing **E** outside the range produced no terminal response, and the runtime value of `PowerOn` remained true. When the player moved forward against the door, their X position held at 176.55 cm.
-
-TC-003 and TC-004 were checked in separate headless sessions at 30 simulated frames per second. In each run the door stayed closed after an out-of-range input. After the player returned and pressed **E**, the panel rose 250 cm. Its center was sampled at Z = 120 cm while closed, 245 cm during opening, and 370 cm when open. Forward movement then took the player from X = 20 cm through the doorway at X = 220 cm to X = 454.55 cm.
-
-For TC-004, three additional presses during opening produced one opening and one completion in total. The door reached the same final height and completed on the same frame as in TC-003.
+Start each case in a fresh play session. All four cases passed on the tested Linux build. [RUN-001 results and evidence](qa/runs/RUN-001/README.md)
 
 | ID | Player actions | Expected result |
 | --- | --- | --- |
