@@ -1,0 +1,12 @@
+{
+    "FileVersion": 3,
+    "EngineAssociation": "5.9",
+    "Category": "Games",
+    "Description": "Control room security door QA lab",
+    "Plugins": [
+        {
+            "Name": "AndroidFileServer",
+            "Enabled": false
+        }
+    ]
+}
