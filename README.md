@@ -4,7 +4,7 @@ An Unreal Engine 5 prototype for testing Blueprint interactions, triggers, and s
 
 ## Play the current build
 
-Open `ControlRoomLab.uproject` in Unreal Engine 5.9 Preview 2 and press **Play**. Use **WASD** to move and the **mouse** to look. Approach the **DOOR CONTROL** terminal and press **E**. The terminal reports `Door offline - no power.` and the closed door blocks the player. Press **E** beside **POWER** to switch the room power on. After you leave, the power stays on for the rest of the session. Pressing **E** back at **DOOR CONTROL** now reports `Door terminal online.` The door remains closed in this build.
+Open `ControlRoomLab.uproject` in Unreal Engine 5.9 Preview 2 and press **Play**. Use **WASD** to move and the **mouse** to look. Approach the **DOOR CONTROL** terminal and press **E**. The terminal reports `Door offline - no power.` and the closed door blocks the player. Press **E** beside **POWER** to switch the room power on. After you leave, the power stays on for the rest of the session. Return to **DOOR CONTROL** and press **E**. The door rises over one second. Once it is open, walk through the doorway.
 
 ## First scenario — Control room security door
 
@@ -12,13 +12,15 @@ The player starts in a control room with the power off and the security door clo
 
 An accepted command moves the door from **Closed** to **Opening** to **Open**. Further inputs during opening have no effect. Once open, the doorway must allow the player to walk through.
 
-## Planned functional tests
+## Functional tests
 
 Start each case in a fresh play session. TC-001 has been checked in headless gameplay on Linux using simulated key input. The Blueprint logged the warning in range and stayed silent at spawn. With forward input held against the closed door, the player stopped at X = 176.55 cm in front of the door centered at X = 220 cm. On-screen presentation still awaits visual review.
 
-TC-002 was also checked in a headless Linux session with simulated key input. After powering the room, the player entered and left the door terminal's range. Pressing **E** outside the range produced no terminal response, and the runtime value of `PowerOn` remained true. When the player moved forward against the door, their X position held at 176.55 cm. Returning to the door terminal and pressing **E** produced the online message.
+TC-002 was also checked in a headless Linux session with simulated key input. After powering the room, the player entered and left the door terminal's range. Pressing **E** outside the range produced no terminal response, and the runtime value of `PowerOn` remained true. When the player moved forward against the door, their X position held at 176.55 cm.
 
-TC-003 and TC-004 await implementation of the door's opening sequence.
+TC-003 and TC-004 were checked in separate headless sessions at 30 simulated frames per second. In each run the door stayed closed after an out-of-range input. After the player returned and pressed **E**, the panel rose 250 cm. Its center was sampled at Z = 120 cm while closed, 245 cm during opening, and 370 cm when open. Forward movement then took the player from X = 20 cm through the doorway at X = 220 cm to X = 454.55 cm.
+
+For TC-004, three additional presses during opening produced one opening and one completion in total. The door reached the same final height and completed on the same frame as in TC-003.
 
 | ID | Player actions | Expected result |
 | --- | --- | --- |
