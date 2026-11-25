@@ -4,7 +4,7 @@ An Unreal Engine 5 prototype for testing Blueprint interactions, triggers, and s
 
 ## Play the current build
 
-Open `ControlRoomLab.uproject` in Unreal Engine 5.9 Preview 2 and press **Play**. Use **WASD** to move and the **mouse** to look. Approach the **DOOR CONTROL** terminal and press **E**. The terminal reports `Door offline - no power.` and the closed door blocks the player. Press **E** beside **POWER** to switch the room power on. After you leave, the power stays on for the rest of the session. Return to **DOOR CONTROL** and press **E**. The door rises over one second. Once it is open, walk through the doorway.
+Open `ControlRoomLab.uproject` in Unreal Engine 5.9 Preview 2 and press **Play**. Use **WASD** to move and the **mouse** to look. Approach the **DOOR CONTROL** terminal and press **E**. The terminal displays **OFFLINE - NO POWER** and the closed door blocks the player. Press **E** beside **POWER** to switch the room power on. After you leave, the power stays on for the rest of the session. Return to **DOOR CONTROL** and press **E**. The door rises over one second. Once it is open, walk through the doorway.
 
 ## First scenario — Control room security door
 
@@ -14,7 +14,7 @@ An accepted command moves the door from **Closed** to **Opening** to **Open**. F
 
 ## Functional tests
 
-Start each case in a fresh play session. All four cases passed on the tested Linux build. [RUN-001 results and evidence](qa/runs/RUN-001/README.md)
+Start each case in a fresh play session. All four cases passed on Linux after the terminal readability update. [RUN-002 visual retest and regression results](qa/runs/RUN-002/README.md) · [RUN-001 baseline and gameplay video](qa/runs/RUN-001/README.md)
 
 | ID | Player actions | Expected result |
 | --- | --- | --- |
