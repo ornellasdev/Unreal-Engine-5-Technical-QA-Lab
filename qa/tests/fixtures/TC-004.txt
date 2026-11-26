@@ -1,0 +1,9 @@
+[2026.11.26-00.34.27:973][  7]LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Control room power on.
+[2026.11.26-00.34.27:977][ 21]0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Closed
+[2026.11.26-00.34.27:979][ 22]0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.PowerOn = True
+[2026.11.26-00.34.27:982][ 31]LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Door opening.
+[2026.11.26-00.34.27:985][ 44]0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Opening
+[2026.11.26-00.34.27:989][ 60]LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Door open.
+[2026.11.26-00.34.27:991][ 65]0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Open
+[2026.11.26-00.34.27:999][ 95]0) SphereComponent /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=454.550948,Y=0.000000,Z=95.000000)
+[2026.11.26-00.34.28:223][ 99]LogExit: Exiting.

@@ -1,0 +1,19 @@
+name: QA log verifier
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Test the Python log verifier
+        run: python3 -B -m unittest discover -s qa/tests -v

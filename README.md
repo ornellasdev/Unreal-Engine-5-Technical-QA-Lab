@@ -49,6 +49,24 @@ python3 qa/run_functional.py --editor "/path/to/Engine/Binaries/Linux/UnrealEdit
 
 The runner starts one headless game per case and checks Blueprint messages, power, door transitions and player collision. It prints a result for each case and returns a nonzero exit code on failure. Each execution keeps its Unreal logs in a new directory under `Saved/QA/`. For the rendered readability check, see the [RUN-002 screenshots](qa/runs/RUN-002/README.md).
 
+### Test the log verifier
+
+The local gameplay suite above launches six Unreal sessions. The **QA log verifier** workflow runs five Python unit tests on every pull request and on pushes to `main`. These tests replay excerpts from the TC-001 and TC-004 logs recorded during RUN-006. Two positive controls check that the verifier accepts the original evidence. Three negative controls change one observation at a time and require a failure for the expected reason.
+
+| Change to the recorded log | What the verifier must detect |
+| --- | --- |
+| Duplicate the opening event | The door started opening twice. |
+| Remove one of two player-position samples | Evidence for the blocked player is incomplete. |
+| Move the second player position past the closed door | The player crossed while the door was still closed. |
+
+From the repository root, run the same checks with Python 3:
+
+```bash
+python3 -B -m unittest discover -s qa/tests -v
+```
+
+[Verifier tests](qa/tests/test_verifier.py) · [GitHub Actions runs](https://github.com/ornellasdev/Unreal-Engine-5-Technical-QA-Lab/actions/workflows/qa-verifier.yml)
+
 ## Test runs and evidence
 
 | Run | Question | Result |
