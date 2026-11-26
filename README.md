@@ -1,4 +1,4 @@
-# Unreal-Engine-5-Technical-QA-Lab
+# Unreal Engine 5 Technical QA Lab
 
 An Unreal Engine 5 prototype for testing Blueprint interactions, triggers, and state transitions through functional and exploratory testing.
 
@@ -14,7 +14,7 @@ An accepted command moves the door from **Closed** to **Opening** to **Open**. F
 
 ## Functional tests
 
-Start each case in a fresh play session. All four cases passed on Linux after the terminal readability update. [RUN-002 visual retest and regression results](qa/runs/RUN-002/README.md) · [RUN-001 baseline and gameplay video](qa/runs/RUN-001/README.md)
+Start each case in a fresh play session. All four cases passed in the baseline and again after the readability fix.
 
 | ID | Player actions | Expected result |
 | --- | --- | --- |
@@ -22,3 +22,11 @@ Start each case in a fresh play session. All four cases passed on Linux after th
 | TC-002 | Switch on the power. Approach the door terminal, leave its range, then press interact. | Power stays on. The open command is unavailable outside the terminal's range, and the door stays closed. |
 | TC-003 | Switch on the power. Enter the door terminal's range, step out, then return and interact once. | The door begins opening, reaches Open, and lets the player walk through. |
 | TC-004 | Switch on the power and activate the door terminal. Press interact several more times while the door is moving, then walk through. | The opening animation finishes once without restarting. The door stays open and the player can pass. |
+
+## Test runs and evidence
+
+| Run | Question | Result |
+| --- | --- | --- |
+| [RUN-001 · Gameplay baseline](qa/runs/RUN-001/README.md) | Do power, range, repeated input and door collision work as specified? | Four functional cases passed. The gameplay clip revealed poor contrast at the terminals and door. |
+| [RUN-002 · Visual retest](qa/runs/RUN-002/README.md) | Can the player distinguish the closed door and read the terminal feedback? | Player-view captures verified the fix. All four functional cases passed again. |
+| [RUN-003 · Exploratory testing](qa/runs/RUN-003/README.md) | Do terminal feedback, door motion and collision stay consistent across re-entry and a new session? | The door opened once despite repeated input. A fresh session restored the starting prompts, power state and blocked passage. |

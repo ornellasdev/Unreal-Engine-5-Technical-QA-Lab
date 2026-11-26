@@ -20,3 +20,5 @@ Open the tested revision and follow the [case steps](../../../README.md#function
 A separate Vulkan run captured the unpowered interaction, power activation, door opening, and passage from the player's view. The clip samples gameplay at 10 fps. Captions identify the actions, and camera cuts reposition the player between test points. [Gameplay video · 6 seconds](control-room.mp4)
 
 **Open finding — low contrast at the door and terminals.** From the door terminal, the closed panel blends into the bright surround. Both terminal labels are difficult to read from the captured interaction points. The offline warning was verified in the runtime log. Its on-screen legibility remains unverified. To retest, approach each terminal from spawn and check whether its label, the closed panel's edges, and the interaction feedback are readable before and after pressing E.
+
+**Follow-up.** The [RUN-002 player-view retest](../RUN-002/README.md) verified the readability fix and repeated all four functional cases.

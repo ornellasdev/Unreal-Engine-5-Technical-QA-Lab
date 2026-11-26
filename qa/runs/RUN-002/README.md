@@ -20,3 +20,5 @@ Each case ran in a fresh standalone game process at 30 simulated frames per seco
 | TC-002 | Pass | Outside the door terminal's range, the interaction produced no door response. Power stayed on, and the closed door blocked passage. |
 | TC-003 | Pass | Returning and pressing E started one opening. The player crossed the door plane at X = 220 cm and reached X = 454.55 cm. |
 | TC-004 | Pass | Three additional presses during opening produced a single completion on frame 60, the same as TC-003. The player crossed the doorway. |
+
+The [RUN-003 exploratory report](../RUN-003/README.md) follows the same build through terminal re-entry, repeated inputs after opening and a fresh game session.

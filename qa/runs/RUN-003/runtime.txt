@@ -1,0 +1,76 @@
+Simulation frame and selected Unreal runtime observations. Positions in cm.
+
+REENTRY
+  6  [BP_DoorInteraction_C_0] Door offline - no power.
+  8  BP_DoorInteraction_C_0.DoorState = Closed
+  8  BP_DoorInteraction_C_0.PowerOn = False
+  8  DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=104.000000,Y=-140.000000,Z=95.000000)
+  8  StaticMeshActor_9.StaticMeshComponent0.RelativeLocation = (X=220.000000,Y=0.000000,Z=120.000000)
+  8  TextRenderActor_3.NewTextRenderComponent.Text = INVTEXT("[E] SWITCH ON")
+  8  TextRenderActor_2.NewTextRenderComponent.Text = INVTEXT("OFFLINE - NO POWER")
+ 14  [BP_DoorInteraction_C_0] Control room power on.
+ 20  BP_DoorInteraction_C_0.DoorState = Closed
+ 20  BP_DoorInteraction_C_0.PowerOn = True
+ 20  DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=-305.000000,Y=260.000000,Z=95.000000)
+ 20  StaticMeshActor_9.StaticMeshComponent0.RelativeLocation = (X=220.000000,Y=0.000000,Z=120.000000)
+ 20  TextRenderActor_3.NewTextRenderComponent.Text = INVTEXT("POWER ON")
+ 20  TextRenderActor_2.NewTextRenderComponent.Text = INVTEXT("[E] OPEN DOOR")
+ 27  [BP_DoorInteraction_C_0] Door opening.
+ 36  BP_DoorInteraction_C_0.DoorState = Opening
+ 36  BP_DoorInteraction_C_0.PowerOn = True
+ 36  DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=20.000000,Y=0.000000,Z=95.000000)
+ 36  StaticMeshActor_9.StaticMeshComponent0.RelativeLocation = (X=220.000000,Y=0.000000,Z=203.333336)
+ 36  TextRenderActor_3.NewTextRenderComponent.Text = INVTEXT("POWER ON")
+ 36  TextRenderActor_2.NewTextRenderComponent.Text = INVTEXT("OPENING")
+ 49  BP_DoorInteraction_C_0.DoorState = Opening
+ 49  BP_DoorInteraction_C_0.PowerOn = True
+ 49  DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=104.000000,Y=-140.000000,Z=95.000000)
+ 49  StaticMeshActor_9.StaticMeshComponent0.RelativeLocation = (X=220.000000,Y=0.000000,Z=311.666722)
+ 49  TextRenderActor_3.NewTextRenderComponent.Text = INVTEXT("POWER ON")
+ 49  TextRenderActor_2.NewTextRenderComponent.Text = INVTEXT("OPENING")
+ 56  [BP_DoorInteraction_C_0] Door open.
+ 59  BP_DoorInteraction_C_0.DoorState = Open
+ 59  BP_DoorInteraction_C_0.PowerOn = True
+ 59  DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=104.000000,Y=-140.000000,Z=95.000000)
+ 59  StaticMeshActor_9.StaticMeshComponent0.RelativeLocation = (X=220.000000,Y=0.000000,Z=370.000000)
+ 59  TextRenderActor_3.NewTextRenderComponent.Text = INVTEXT("POWER ON")
+ 59  TextRenderActor_2.NewTextRenderComponent.Text = INVTEXT("OPEN")
+ 66  BP_DoorInteraction_C_0.DoorState = Open
+ 66  BP_DoorInteraction_C_0.PowerOn = True
+ 66  DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=104.000000,Y=-140.000000,Z=95.000000)
+ 66  StaticMeshActor_9.StaticMeshComponent0.RelativeLocation = (X=220.000000,Y=0.000000,Z=370.000000)
+ 66  TextRenderActor_3.NewTextRenderComponent.Text = INVTEXT("POWER ON")
+ 66  TextRenderActor_2.NewTextRenderComponent.Text = INVTEXT("OPEN")
+ 94  BP_DoorInteraction_C_0.DoorState = Open
+ 94  BP_DoorInteraction_C_0.PowerOn = True
+ 94  DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=454.550948,Y=0.000000,Z=95.000000)
+ 94  StaticMeshActor_9.StaticMeshComponent0.RelativeLocation = (X=220.000000,Y=0.000000,Z=370.000000)
+ 94  TextRenderActor_3.NewTextRenderComponent.Text = INVTEXT("POWER ON")
+ 94  TextRenderActor_2.NewTextRenderComponent.Text = INVTEXT("OPEN")
+
+RESET
+  3  BP_DoorInteraction_C_0.DoorState = Closed
+  3  BP_DoorInteraction_C_0.PowerOn = False
+  3  DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=-365.000000,Y=-30.000000,Z=90.000000)
+  3  StaticMeshActor_9.StaticMeshComponent0.RelativeLocation = (X=220.000000,Y=0.000000,Z=120.000000)
+  3  TextRenderActor_3.NewTextRenderComponent.Text = INVTEXT("[E] SWITCH ON")
+  3  TextRenderActor_2.NewTextRenderComponent.Text = INVTEXT("[E] INTERACT")
+ 11  [BP_DoorInteraction_C_0] Door offline - no power.
+ 14  BP_DoorInteraction_C_0.DoorState = Closed
+ 14  BP_DoorInteraction_C_0.PowerOn = False
+ 14  DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=104.000000,Y=-140.000000,Z=95.000000)
+ 14  StaticMeshActor_9.StaticMeshComponent0.RelativeLocation = (X=220.000000,Y=0.000000,Z=120.000000)
+ 14  TextRenderActor_3.NewTextRenderComponent.Text = INVTEXT("[E] SWITCH ON")
+ 14  TextRenderActor_2.NewTextRenderComponent.Text = INVTEXT("OFFLINE - NO POWER")
+ 45  BP_DoorInteraction_C_0.DoorState = Closed
+ 45  BP_DoorInteraction_C_0.PowerOn = False
+ 45  DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=176.551110,Y=0.000000,Z=95.000000)
+ 45  StaticMeshActor_9.StaticMeshComponent0.RelativeLocation = (X=220.000000,Y=0.000000,Z=120.000000)
+ 45  TextRenderActor_3.NewTextRenderComponent.Text = INVTEXT("[E] SWITCH ON")
+ 45  TextRenderActor_2.NewTextRenderComponent.Text = INVTEXT("OFFLINE - NO POWER")
+ 54  BP_DoorInteraction_C_0.DoorState = Closed
+ 54  BP_DoorInteraction_C_0.PowerOn = False
+ 54  DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=176.551110,Y=0.000000,Z=95.000000)
+ 54  StaticMeshActor_9.StaticMeshComponent0.RelativeLocation = (X=220.000000,Y=0.000000,Z=120.000000)
+ 54  TextRenderActor_3.NewTextRenderComponent.Text = INVTEXT("[E] SWITCH ON")
+ 54  TextRenderActor_2.NewTextRenderComponent.Text = INVTEXT("OFFLINE - NO POWER")
