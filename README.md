@@ -2,6 +2,20 @@
 
 An Unreal Engine 5 prototype for testing Blueprint interactions, triggers, and state transitions through functional and exploratory testing.
 
+## Case study — Making the control room terminals readable
+
+All four gameplay tests passed in RUN-001. Watching the recording revealed a problem the logs could not show. From the player's interaction point, the power terminal looked like a dark block. Pressing **E** switched the power on, but the terminal face gave the player no readable confirmation.
+
+| Before · RUN-001 | After · RUN-002 |
+| --- | --- |
+| ![Original power terminal after pressing E. Its dark face has no readable label or status.](qa/case-studies/terminal-readability/before.jpg) | ![Same terminal after the fix. POWER identifies the terminal and POWER ON confirms the interaction.](qa/case-studies/terminal-readability/after.jpg) |
+
+**Reproduce.** Start a fresh session in the [baseline build](https://github.com/ornellasdev/Unreal-Engine-5-Technical-QA-Lab/tree/f9c5d853db169e359626f05fd0f29d1ce0a5f5f5). Approach the power terminal and press **E**. From that position, check whether you can identify the terminal and tell whether the room now has power. The left image is the player viewport at 2.6 seconds in the [original gameplay clip](qa/runs/RUN-001/control-room.mp4).
+
+**Fix.** I moved the labels onto the terminal faces, used light text on dark panels, and wired the displayed messages to the Blueprint state changes. The power prompt now changes from **[E] SWITCH ON** to **POWER ON**. I also adjusted the room lighting and gave the security door a blue finish so its edges stand out against the wall.
+
+**Retest.** In RUN-002, player-view captures showed both power states and the door's **OFFLINE - NO POWER** response. All four functional cases passed again, including collision at the closed door and passage after opening. [Visual retest and regression results](qa/runs/RUN-002/README.md)
+
 ## Play the current build
 
 Open `ControlRoomLab.uproject` in Unreal Engine 5.9 Preview 2 and press **Play**. Use **WASD** to move and the **mouse** to look. Approach the **DOOR CONTROL** terminal and press **E**. The terminal displays **OFFLINE - NO POWER** and the closed door blocks the player. Press **E** beside **POWER** to switch the room power on. After you leave, the power stays on for the rest of the session. Return to **DOOR CONTROL** and press **E**. The door rises over one second. Once it is open, walk through the doorway.
