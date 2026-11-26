@@ -14,7 +14,7 @@ An accepted command moves the door from **Closed** to **Opening** to **Open**. F
 
 ## Functional tests
 
-Start each case in a fresh play session. The first four cases cover door behavior and collision. TC-005 checks the edge of the door terminal's interaction range.
+Start each case in a fresh play session. The first four cases cover door behavior and collision. TC-005 checks the edge of the terminal's interaction range. TC-006 checks collision while the panel rises.
 
 | ID | Player actions | Expected result |
 | --- | --- | --- |
@@ -23,6 +23,7 @@ Start each case in a fresh play session. The first four cases cover door behavio
 | TC-003 | Switch on the power. Enter the door terminal's range, step out, then return and interact once. | The door begins opening, reaches Open, and lets the player walk through. |
 | TC-004 | Switch on the power and activate the door terminal. Press interact several more times while the door is moving, then walk through. | The opening animation finishes once without restarting. The door stays open and the player can pass. |
 | TC-005 | Power the room. With the player centered at Y = −140 cm and Z = 95 cm, press E at X = −2 cm, then again at X = 0 cm. | The outside input leaves the door closed. The inside input starts one opening and the player can pass. |
+| TC-006 | Power the room, hold W against the door and press E at the edge of the terminal zone. Keep W held as the panel lifts. | The low panel blocks movement. As clearance increases, the player passes underneath without needing to release W. |
 
 ### Run the functional regression
 
@@ -43,3 +44,4 @@ The runner starts one headless game per case and checks Blueprint messages, powe
 | [RUN-003 · Exploratory testing](qa/runs/RUN-003/README.md) | Do terminal feedback, door motion and collision stay consistent across re-entry and a new session? | The door opened once despite repeated input. A fresh session restored the starting prompts, power state and blocked passage. |
 | [RUN-004 · Repeatable regression](qa/runs/RUN-004/README.md) | Can one local command run and check all four cases? | Four fresh Unreal processes completed and all four cases passed. |
 | [RUN-005 · Terminal range boundary](qa/runs/RUN-005/README.md) | Does moving the player center 2 cm across the trigger boundary change the result of pressing E? | The outside input left the door closed. The inside input opened it. All five cases passed locally. |
+| [RUN-006 · Moving door collision](qa/runs/RUN-006/README.md) | What happens when the player keeps pushing against the panel as it lifts? | The player cleared the moving door before opening finished. All six cases passed locally. |

@@ -1,6 +1,7 @@
 """Run the control-room regression cases in standalone Unreal sessions."""
 
 import argparse
+import math
 import os
 import re
 import shutil
@@ -15,14 +16,36 @@ HALL = "BugItGo 20 0 95 0 0 0"
 STATE = "getall BP_DoorInteraction_C DoorState"
 POSITION = "getall SphereComponent RelativeLocation"
 POWER_STATE = "getall BP_DoorInteraction_C PowerOn"
-CASES = range(1, 6)
+CASES = range(1, 7)
+MOTION_FRAMES = (20, 30, *range(31, 44), 50, 62)
 
 
 def interact(frame):
     return [(frame, "Input.+key E"), (frame + 1, "Input.-key E")]
 
 
+def moving_door_steps():
+    steps = [(2, POWER), *interact(5), (9, POWER_STATE),
+             (9, "getall BP_DoorInteraction_C DoorPanel"),
+             (10, "BugItGo 130 -40 95 0 0 0"), (12, "Input.+key W"),
+             *interact(22), (64, "Input.-key W"), (66, "quit")]
+    for frame in (20, 30, 50, 62):
+        steps.append((frame, STATE))
+    for frame in MOTION_FRAMES:
+        steps.extend([(frame, POSITION),
+                      (frame, "getall StaticMeshComponent RelativeLocation")])
+    return steps
+
+
 def commands(case):
+    if case == 6:
+        steps = moving_door_steps()
+    else:
+        steps = terminal_steps(case)
+    return ",".join("DEFER " * frame + command for frame, command in sorted(steps))
+
+
+def terminal_steps(case):
     if case == 1:
         steps = [(2, DOOR), *interact(5), (9, STATE), (10, POWER_STATE), (12, HALL)]
     else:
@@ -43,7 +66,7 @@ def commands(case):
     if case == 4:
         for frame in (36, 42, 50):
             steps.extend(interact(frame))
-    return ",".join("DEFER " * frame + command for frame, command in sorted(steps))
+    return steps
 
 
 def check(label, actual, expected):
@@ -72,6 +95,9 @@ def verify(case, log):
         expected_messages.extend(["Door opening.", "Door open."])
     check("messages", [message for _, message in events], expected_messages)
     check("power", power, ["False" if case == 1 else "True"])
+    if case == 6:
+        check_moving_door(log, states, positions)
+        return None
     check("door states", states, ["Closed"] if case <= 2 else ["Closed", "Opening", "Open"])
 
     if case <= 2:
@@ -88,6 +114,34 @@ def verify(case, log):
     if positions[0][0] <= 255:
         raise ValueError(f"player did not clear the door at X=220 cm: X={positions[0][0]}")
     return int(events[-1][0]) - int(events[-2][0])
+
+
+def check_moving_door(log, states, positions):
+    check("door states with forward input held", states, ["Closed", "Opening", "Opening", "Open"])
+    check("player samples under continuous input", len(positions), len(MOTION_FRAMES))
+    panels = re.findall(r"BP_DoorInteraction_C_\d+\.DoorPanel = [^\n]*?PersistentLevel\.(\w+)", log)
+    check("assigned door panel references", len(panels), 1)
+    heights = [float(z) for z in re.findall(
+        re.escape(panels[0]) + r"\.StaticMeshComponent0\.RelativeLocation = "
+        r"\(X=220\.0+,Y=0\.0+,Z=([-\d.]+)\)", log
+    )]
+    check("door height samples", len(heights), len(MOTION_FRAMES))
+    # The panel is 240 cm tall. The player's collision sphere has a 35 cm radius.
+    if any(abs(y + 40) > 1 for _, y, _ in positions):
+        raise ValueError(f"player left the test lane: {positions}")
+    if any(abs(x - 176.55) > 1 for x, _, _ in positions[:2]):
+        raise ValueError(f"player should stop against the low panel: {positions[:2]}")
+    if not (heights[0] == 120 < heights[1] < 215 and 250 < heights[-2] < heights[-1] == 370):
+        raise ValueError(f"unexpected door clearance during opening: {heights}")
+    # Distance from the sphere center to the panel rectangle in the X/Z plane.
+    # The lane stays within the panel width. Allow 1 cm for contact tolerances.
+    for frame, (x, _, z), height in zip(MOTION_FRAMES, positions, heights):
+        dx = max(abs(x - 220) - 8, 0)
+        dz = max(abs(z - height) - 120, 0)
+        if math.hypot(dx, dz) < 34:
+            raise ValueError(f"player penetrated the panel at frame {frame}: X={x}, Z={z}")
+    if min(point[0] for point in positions[-2:]) <= 263:
+        raise ValueError(f"player did not fully clear the moving door: {positions[-2:]}")
 
 
 def main():
