@@ -49,6 +49,10 @@ python3 qa/run_functional.py --editor "/path/to/Engine/Binaries/Linux/UnrealEdit
 
 The runner starts one headless game per case and checks Blueprint messages, power, door transitions and player collision. It prints a result for each case and returns a nonzero exit code on failure. Each execution keeps its Unreal logs in a new directory under `Saved/QA/`. For the rendered readability check, see the [RUN-002 screenshots](qa/runs/RUN-002/README.md).
 
+### Run the native Blueprint test in the editor
+
+Open **Session Frontend → Automation** and search for **UnpoweredDoor**. Select the test under **Project → Functional Tests → Maps → ControlRoom** and run it. Its Functional Test Actor moves the pawn to the door terminal, sends E and checks the text displayed by the gameplay Blueprint and the door state. [Blueprint asset](Content/Tests/BP_FT_UnpoweredDoor.uasset) · [RUN-008 result and command line](qa/runs/RUN-008/README.md)
+
 ### Test the log verifier
 
 The local gameplay suite above launches six Unreal sessions. The **QA log verifier** workflow runs five Python unit tests on every pull request and on pushes to `main`. These tests replay excerpts from the TC-001 and TC-004 logs recorded during RUN-006. Two positive controls check that the verifier accepts the original evidence. Three negative controls change one observation at a time and require a failure for the expected reason.
@@ -78,3 +82,4 @@ python3 -B -m unittest discover -s qa/tests -v
 | [RUN-005 · Terminal range boundary](qa/runs/RUN-005/README.md) | Does moving the player center 2 cm across the trigger boundary change the result of pressing E? | The outside input left the door closed. The inside input opened it. All five cases passed locally. |
 | [RUN-006 · Moving door collision](qa/runs/RUN-006/README.md) | What happens when the player keeps pushing against the panel as it lifts? | The player cleared the moving door before opening finished. All six cases passed locally. |
 | [RUN-007 · Simulation-rate comparison](qa/runs/RUN-007/README.md) | Does changing the fixed step affect contact and passage under the moving door? | TC-006 passed at 30, 60 and 120 fps. Full clearance took 0.617–0.633 simulated seconds after opening began. |
+| [RUN-008 · Native Blueprint functional test](qa/runs/RUN-008/README.md) | Does the actual terminal show the offline warning and keep the unpowered door closed after E? | Unreal Automation discovered the actor in ControlRoom and reported Success. |

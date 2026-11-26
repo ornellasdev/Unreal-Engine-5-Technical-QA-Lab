@@ -1,0 +1,10 @@
+{
+  "fullTestPath": "Project.Functional Tests.Maps.ControlRoom.UnpoweredDoor",
+  "state": "Success",
+  "duration": 1.8126047849655151,
+  "warnings": 0,
+  "errors": 0,
+  "messages": [
+    "UnpoweredDoor: Unpowered interaction displayed OFFLINE - NO POWER and the door stayed closed."
+  ]
+}
