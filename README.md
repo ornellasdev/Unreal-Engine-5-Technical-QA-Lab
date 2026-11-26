@@ -23,6 +23,16 @@ Start each case in a fresh play session. All four cases passed in the baseline a
 | TC-003 | Switch on the power. Enter the door terminal's range, step out, then return and interact once. | The door begins opening, reaches Open, and lets the player walk through. |
 | TC-004 | Switch on the power and activate the door terminal. Press interact several more times while the door is moving, then walk through. | The opening animation finishes once without restarting. The door stays open and the player can pass. |
 
+### Run the functional regression
+
+From the repository root, run the following command with Python 3 and your local Unreal Engine 5.9 Preview 2 Linux editor binary. If `UnrealEditor-Cmd` is on your PATH, omit `--editor` and its value.
+
+```bash
+python3 qa/run_functional.py --editor "/path/to/Engine/Binaries/Linux/UnrealEditor-Cmd"
+```
+
+The runner starts one headless game per case and checks Blueprint messages, power, door transitions and player collision. It prints a result for each case and returns a nonzero exit code on failure. Each execution keeps its Unreal logs in a new directory under `Saved/QA/`. For the rendered readability check, see the [RUN-002 screenshots](qa/runs/RUN-002/README.md).
+
 ## Test runs and evidence
 
 | Run | Question | Result |
@@ -30,3 +40,4 @@ Start each case in a fresh play session. All four cases passed in the baseline a
 | [RUN-001 · Gameplay baseline](qa/runs/RUN-001/README.md) | Do power, range, repeated input and door collision work as specified? | Four functional cases passed. The gameplay clip revealed poor contrast at the terminals and door. |
 | [RUN-002 · Visual retest](qa/runs/RUN-002/README.md) | Can the player distinguish the closed door and read the terminal feedback? | Player-view captures verified the fix. All four functional cases passed again. |
 | [RUN-003 · Exploratory testing](qa/runs/RUN-003/README.md) | Do terminal feedback, door motion and collision stay consistent across re-entry and a new session? | The door opened once despite repeated input. A fresh session restored the starting prompts, power state and blocked passage. |
+| [RUN-004 · Repeatable regression](qa/runs/RUN-004/README.md) | Can one local command run and check all four cases? | Four fresh Unreal processes completed and all four cases passed. |
