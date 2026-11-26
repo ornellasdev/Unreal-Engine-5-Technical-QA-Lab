@@ -1,0 +1,47 @@
+Selected runtime observations by simulation frame. Positions in cm.
+
+TC-001 PASS
+7 LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Door offline - no power.
+9 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Closed
+10 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.PowerOn = False
+49 0) SphereComponent /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=176.551110,Y=0.000000,Z=95.000000)
+58 0) SphereComponent /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=176.551110,Y=0.000000,Z=95.000000)
+
+TC-002 PASS
+7 LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Control room power on.
+21 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Closed
+22 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.PowerOn = True
+49 0) SphereComponent /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=176.551110,Y=0.000000,Z=95.000000)
+58 0) SphereComponent /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=176.551110,Y=0.000000,Z=95.000000)
+
+TC-003 PASS
+7 LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Control room power on.
+21 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Closed
+22 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.PowerOn = True
+31 LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Door opening.
+44 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Opening
+60 LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Door open.
+65 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Open
+95 0) SphereComponent /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=454.550948,Y=0.000000,Z=95.000000)
+
+TC-004 PASS
+7 LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Control room power on.
+21 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Closed
+22 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.PowerOn = True
+31 LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Door opening.
+44 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Opening
+60 LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Door open.
+65 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Open
+95 0) SphereComponent /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=454.550948,Y=0.000000,Z=95.000000)
+
+TC-005 PASS
+7 LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Control room power on.
+16 0) SphereComponent /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=-2.000000,Y=-140.000000,Z=95.000000)
+21 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Closed
+22 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.PowerOn = True
+28 0) SphereComponent /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=0.000000,Y=-140.000000,Z=95.000000)
+31 LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Door opening.
+44 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Opening
+60 LogBlueprintUserMessages: [BP_DoorInteraction_C_0] Door open.
+65 0) BP_DoorInteraction_C /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.BP_DoorInteraction_C_0.DoorState = Open
+95 0) SphereComponent /Game/Maps/ControlRoom.ControlRoom:PersistentLevel.DefaultPawn_0.CollisionComponent0.RelativeLocation = (X=454.550948,Y=0.000000,Z=95.000000)

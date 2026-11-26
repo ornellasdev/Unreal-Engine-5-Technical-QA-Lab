@@ -1,4 +1,4 @@
-"""Run the four control-room regression cases in standalone Unreal sessions."""
+"""Run the control-room regression cases in standalone Unreal sessions."""
 
 import argparse
 import os
@@ -15,6 +15,7 @@ HALL = "BugItGo 20 0 95 0 0 0"
 STATE = "getall BP_DoorInteraction_C DoorState"
 POSITION = "getall SphereComponent RelativeLocation"
 POWER_STATE = "getall BP_DoorInteraction_C PowerOn"
+CASES = range(1, 6)
 
 
 def interact(frame):
@@ -25,16 +26,20 @@ def commands(case):
     if case == 1:
         steps = [(2, DOOR), *interact(5), (9, STATE), (10, POWER_STATE), (12, HALL)]
     else:
-        steps = [(2, POWER), *interact(5), (10, DOOR), (14, HALL),
+        outside = "BugItGo -2 -140 95 0 0 0" if case == 5 else HALL
+        steps = [(2, POWER), *interact(5), (10, DOOR), (14, outside),
                  *interact(17), (21, STATE), (22, POWER_STATE)]
 
     if case <= 2:
         steps.extend([(26, "Input.+key W"), (49, POSITION), (58, POSITION),
                       (59, "Input.-key W"), (61, "quit")])
     else:
-        steps.extend([(26, DOOR), *interact(29), (44, STATE), (65, STATE),
+        inside = "BugItGo 0 -140 95 0 0 0" if case == 5 else DOOR
+        steps.extend([(26, inside), *interact(29), (44, STATE), (65, STATE),
                       (68, HALL), (70, "Input.+key W"), (95, POSITION),
                       (96, "Input.-key W"), (98, "quit")])
+    if case == 5:
+        steps.extend([(16, POSITION), (28, POSITION)])
     if case == 4:
         for frame in (36, 42, 50):
             steps.extend(interact(frame))
@@ -56,9 +61,11 @@ def verify(case, log):
     events = re.findall(
         r"\]\[\s*(\d+)\]LogBlueprintUserMessages: \[BP_DoorInteraction_C_\d+\] ([^\r\n]+)", log
     )
-    positions = [float(x) for x in re.findall(
-        r"DefaultPawn_\d+\.CollisionComponent0\.RelativeLocation = \(X=([-\d.]+)", log
-    )]
+    samples = re.findall(
+        r"DefaultPawn_\d+\.CollisionComponent0\.RelativeLocation = "
+        r"\(X=([-\d.]+),Y=([-\d.]+),Z=([-\d.]+)\)", log
+    )
+    positions = [tuple(map(float, point)) for point in samples]
 
     expected_messages = ["Door offline - no power." if case == 1 else "Control room power on."]
     if case >= 3:
@@ -69,12 +76,17 @@ def verify(case, log):
 
     if case <= 2:
         check("blocked position samples", len(positions), 2)
-        if any(abs(x - 176.55) > 1 for x in positions):
+        if any(abs(x - 176.55) > 1 for x, _, _ in positions):
             raise ValueError(f"closed door should stop the player near X=176.55 cm, got {positions}")
         return None
+    if case == 5:
+        check("terminal boundary probes (cm)", positions[:2], [(-2, -140, 95), (0, -140, 95)])
+        if int(events[1][0]) < 29:
+            raise ValueError("door started opening before the inside input was processed")
+        positions = positions[2:]
     check("crossing position samples", len(positions), 1)
-    if positions[0] <= 255:
-        raise ValueError(f"player did not clear the door at X=220 cm: X={positions[0]}")
+    if positions[0][0] <= 255:
+        raise ValueError(f"player did not clear the door at X=220 cm: X={positions[0][0]}")
     return int(events[-1][0]) - int(events[-2][0])
 
 
@@ -92,7 +104,7 @@ def main():
     print(f"Logs: {run_dir}", flush=True)
     passed = 0
     reference_duration = None
-    for case in range(1, 5):
+    for case in CASES:
         name = f"TC-{case:03}"
         log_path = run_dir / f"{name}.log"
         try:
@@ -117,8 +129,8 @@ def main():
         else:
             passed += 1
             print(f"{name} PASS", flush=True)
-    print(f"{passed}/4 passed")
-    return int(passed != 4)
+    print(f"{passed}/{len(CASES)} passed")
+    return int(passed != len(CASES))
 
 
 if __name__ == "__main__":
