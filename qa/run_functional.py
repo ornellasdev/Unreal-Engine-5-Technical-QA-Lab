@@ -131,7 +131,9 @@ def check_moving_door(log, states, positions):
         raise ValueError(f"player left the test lane: {positions}")
     if any(abs(x - 176.55) > 1 for x, _, _ in positions[:2]):
         raise ValueError(f"player should stop against the low panel: {positions[:2]}")
-    if not (heights[0] == 120 < heights[1] < 215 and 250 < heights[-2] < heights[-1] == 370):
+    endpoints_match = (math.isclose(heights[0], 120, abs_tol=0.01) and
+                       math.isclose(heights[-1], 370, abs_tol=0.01))
+    if not (endpoints_match and heights[0] < heights[1] < 215 and 250 < heights[-2] < heights[-1]):
         raise ValueError(f"unexpected door clearance during opening: {heights}")
     # Distance from the sphere center to the panel rectangle in the X/Z plane.
     # The lane stays within the panel width. Allow 1 cm for contact tolerances.
